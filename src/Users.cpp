@@ -1,0 +1,38 @@
+#include "Users.h"
+
+// Load user-movie data from the DataManagement by pointer
+void Users::LoadUsersData(map<int, unordered_set<int>>& LoaduserMovies) {
+ userMovies = &LoaduserMovies;  // Initialize userMovies to point on the provided map
+}
+
+/* Function to print all users and their movies *DEBUG FUNCTION*
+void Users::PrintUser_Movies() {
+    for (const auto& userId : *userMovies) { // run on the usermovies map that he point at
+        cout << endl << endl << "Movies for User " << userId.first << ":" << endl;
+        const auto& MyMovies = userMovies->at(userId.first);
+        for (const auto& movieID : MyMovies) {
+            cout << movieID << " ";
+        }
+    }
+}
+*/
+
+// Function to check if a user ID is valid
+bool Users::CheckIfUserID_OK(long int userID) {
+    if (userID <= 0) { // Ensure the user ID is a positive integer
+       // cout << "Error: User ID must be a positive integer." << endl;
+        return false;
+    }
+    return true;
+}
+
+// Add movies to user's list
+void Users::AddMoviesToUser(long int userID, string moviesIDs) {
+     if (!userMovies) return;
+
+    istringstream stream(moviesIDs); //start stream to get movies ids on by one
+    int movieID;
+    while (stream >> movieID) {
+        (*userMovies)[userID].insert(movieID);  // Insert movie ID into the user's set
+    }
+}
