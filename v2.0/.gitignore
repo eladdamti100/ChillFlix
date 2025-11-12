@@ -1,8 +1,0 @@
-movieIDs.txt
-User-Movies.txt
-.vscode
-.idea
-/src/build/
-node_modules/
-package-lock.json
-package.json
